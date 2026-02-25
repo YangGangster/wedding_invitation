@@ -1,0 +1,48 @@
+.dday-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 0px;
+  gap: 16px;
+}
+
+.dday-label {
+  font-family: 'NanumMyeongjo';
+  font-size: clamp(13px, 2vw, 15px);
+  color: #999;
+  letter-spacing: 0.1em;
+}
+
+.dday-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dday-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.dday-number {
+  font-family: 'Karla', sans-serif;
+  font-size: clamp(28px, 6vw, 48px);
+  font-weight: 700;
+  color: #c8607a;
+  line-height: 1;
+}
+
+.dday-unit {
+  font-size: clamp(10px, 1.5vw, 12px);
+  color: #bbb;
+  letter-spacing: 0.05em;
+}
+
+.dday-colon {
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 700;
+  color: #c8607a;
+  margin-bottom: 16px;
+}
