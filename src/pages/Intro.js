@@ -28,6 +28,7 @@ function Intro({ onFinish }) {
       const t2 = setTimeout(() => onFinish(), 2500);
       return () => { clearTimeout(t1); clearTimeout(t2); };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done]);
 
   return (
