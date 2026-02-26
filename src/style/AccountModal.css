@@ -1,0 +1,113 @@
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.account-popup {
+  display: inline-flex;
+  margin: auto;
+  padding: clamp(16px, 3vw, 24px) clamp(16px, 3vw, 20px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 36px);
+  border-radius: 8px;
+  background: #FFF;
+}
+
+.account-info-each {
+  display: flex;
+  width: clamp(260px, 80vw, 310px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.each-header {
+  display: flex;
+  padding: 4px 0px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.each-body {
+  display: flex;
+  padding: 8px 0px;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.each-title {
+  color: #000;
+  font-family: 'NotoSansKR';
+  font-size: clamp(14px, 2.2vw, 16px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.each-line {
+  width: clamp(260px, 80vw, 310px);
+  height: 1px;
+  background: #E6E6E6;
+}
+
+.copy-success {
+  width: clamp(260px, 80vw, 310px);
+  background: #8dcd8d;
+  opacity: 70%;
+  border-radius: 3px;
+  color: #000;
+  text-align: center;
+  font-family: 'NotoSansKR';
+  font-size: clamp(13px, 2vw, 15px);
+}
+
+.each-copy-btn {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 30px;
+  background: #000;
+  color: #FFF;
+  font-family: 'NotoSansKR';
+  font-size: clamp(11px, 1.8vw, 13px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.account-popup-close {
+  display: flex;
+  width: clamp(260px, 80vw, 310px);
+  padding: clamp(10px, 2vw, 12px) 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  background: #F1F1F1;
+  color: #000;
+  text-align: center;
+  font-family: 'NotoSansKR';
+  font-size: clamp(13px, 2vw, 15px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.each-account-text {
+  color: #000;
+  font-family: 'NotoSansKR';
+  font-size: clamp(13px, 2vw, 15px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: uppercase;
+}

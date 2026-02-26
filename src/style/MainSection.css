@@ -1,0 +1,73 @@
+.mainsection {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.mainsection-text {
+  padding: clamp(24px, 5vw, 40px) 0px;
+  gap: clamp(8px, 1.5vw, 12px);
+  flex-direction: column;
+  align-items: center;
+  height: 25vh;
+}
+
+.mainsection-text-1 {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  margin-top: clamp(12px, 2vw, 20px);
+  margin-bottom: clamp(18px, 3vw, 30px);
+  color: #000;
+  text-align: center;
+  font-family: "Karla", sans-serif;
+  font-size: clamp(25px, 3.5vw, 45px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.mainsection-text-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px clamp(16px, 3vw, 28px) 0px;
+  color: #000;
+  text-align: center;
+  font-family: 'NanumMyeongjo';
+  font-size: clamp(20px, 4vw, 28px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.32px;
+}
+
+.text2-inner {
+  font-family: 'NanumMyeongjo';
+  font-size: clamp(16px, 3vw, 22px);
+  margin: 0 5px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.mainsection-text-3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  text-align: center;
+  font-family: 'NanumMyeongjo';
+  font-size: clamp(15px, 2.5vw, 18px);
+  font-style: normal;
+  font-weight: 550;
+  line-height: 1.6;
+  letter-spacing: -0.18px;
+  margin-top: clamp(30px, 3vw, 40px);
+}
+
+.main-image {
+  padding: clamp(8px, 2vw, 15px);
+  width: 100%;
+  height: auto;
+  border-radius: clamp(12px, 2vw, 20px);
+}

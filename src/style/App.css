@@ -362,73 +362,6 @@
   text-transform: uppercase;
 }
 
-/* modal */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(27, 27, 27, 0.541);
-  display: flex;
-  align-items: center;
-  z-index: 100;
-}
-
-.overlay img {
-  display: block;
-  max-width: 80%;
-  max-height: 80%;
-  margin: 60px auto;
-  box-shadow: 3px 5px 7px rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.overlay > span {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: clamp(22px, 4vw, 30px);
-  color: #ffffff;
-  z-index: 999;
-  cursor: pointer;
-}
-
-.overlay-arrows_left {
-  display: flex;
-  background-color: #6d6d6d;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  width: 30px;
-  height: 30px;
-  left: 0;
-  z-index: 999;
-}
-
-.overlay-arrows_left svg {
-  width: 30px;
-  height: 30px;
-}
-
-.overlay-arrows_right svg {
-  width: 30px;
-  height: 30px;
-}
-
-.overlay-arrows_right {
-  display: flex;
-  background-color: #6d6d6d;
-  justify-content: space-between;
-  position: absolute;
-  right: 0;
-  width: 30px;
-  height: 30px;
-  top: 50%;
-  z-index: 999;
-}
-
 /* modal - account */
 .account-popup {
   display: inline-flex;
@@ -548,3 +481,116 @@
   font-family: 'NotoSansKR';
   src: local('NotoSansKR'), url(../fonts/Noto_Sans_KR/NotoSansKR-Regular.otf) format('truetype');
 }
+.gallery-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 4px;
+  border: none;
+  background: #f5f5f5;
+  color: #777;
+  font-family: 'NanumMyeongjo';
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes imgFadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+
+/* modal */
+
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes slideOutLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  overflow: hidden;
+  animation: modalFadeIn 0.3s ease forwards;
+}
+
+.overlay-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 60px 0;
+}
+
+.slide-enter       { animation: slideInFromRight 0.3s ease forwards; }
+.slide-enter-left  { animation: slideInFromRight 0.3s ease forwards; }
+.slide-enter-right { animation: slideInFromLeft 0.3s ease forwards; }
+.slide-out-left    { animation: slideOutLeft 0.3s ease forwards; }
+.slide-out-right   { animation: slideOutRight 0.3s ease forwards; }
+
+.overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.overlay-close:hover { opacity: 1; }
+
+.overlay-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.overlay-arrow:hover { background: rgba(255, 255, 255, 0.3); }
+
+.overlay-arrow-right { right: 16px; }
+.overlay-arrow-left  { left: 16px; }
+

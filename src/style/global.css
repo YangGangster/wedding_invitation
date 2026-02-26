@@ -1,0 +1,36 @@
+body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+/* ===== 공통 레이아웃 ===== */
+.col-md {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.main {
+  width: 100%;
+  padding: 0px auto;
+}
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.container {
+  width: 100%;
+  padding: 0px;
+}
+.col-4 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+/* ===== 폰트 ===== */
+@font-face {
+  font-family: 'NanumMyeongjo';
+  src: local('NanumMyeongjo'), url(../fonts/Nanum_Myeongjo/NanumMyeongjo-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  src: local('NotoSansKR'), url(../fonts/Noto_Sans_KR/NotoSansKR-Regular.otf) format('truetype');
+}

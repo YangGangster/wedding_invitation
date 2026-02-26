@@ -1,17 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
 import { Routes, Route } from "react-router-dom";
-import Groom from "./pages/Groom";
+import Intro from "./pages/Intro";
 import Bride from "./pages/Bride";
 
 const App = () => {
+  const [showIntro, setShowIntro] = useState(true);
   return (
-    <div>
-      <Routes>
-        <Route path="/groom" element={<Groom/>}/>
-        <Route path="/bride" element={<Bride/>}/>
-        <Route path="*" element={<Bride/>}/>
-      </Routes>
-    </div>
+    <>
+      {showIntro && (
+        <Intro onFinish={() => setShowIntro(false)} />
+      )}
+      <div style={{
+        opacity: showIntro ? 0 : 1,
+        transition: 'opacity 1s ease',
+      }}>
+        <Bride/>
+      </div>
+    </>
   );
 };
 
