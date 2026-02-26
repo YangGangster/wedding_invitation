@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import Intro from "./pages/Intro";
 import Bride from "./pages/Bride";
+import MusicPlayer from "./components/MusicPlayer";
 
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -13,6 +14,7 @@ const App = () => {
         opacity: showIntro ? 0 : 1,
         transition: 'opacity 1s ease',
       }}>
+        <MusicPlayer/>
         <Bride/>
       </div>
     </>

@@ -9,22 +9,17 @@ const FadeInSection = ({ children }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.unobserve(ref.current); // 한 번만 작동
+          observer.unobserve(ref.current);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <div
-      ref={ref}
-     className={`transition-all duration-[2000ms] ease-in-out transform p-6 bg-white dark:bg-gray-800 rounded shadow ${
-       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-      }`}
-    >
+    <div ref={ref} className={`fade-section ${isVisible ? "fade-visible" : ""}`}>
       {children}
     </div>
   );
