@@ -1,18 +1,9 @@
 import { useEffect } from 'react';
 
 export default function KakaoMap() {
-    useEffect(() => {
-        if (document.getElementById('kakao-map-script')) {
-            if (window.kakao && window.kakao.maps) {
-                loadMap();
-            }
-            return;
-        }
-        const loadMap = () => {
+     const loadMap = () => {
 
-            console.log('loadMap 실행됨');
             const container = document.getElementById('map');
-            console.log('container:', container);
             const options = {
                 center: new window.kakao.maps.LatLng(37.5665, 126.9780),
                 level: 3,
@@ -25,19 +16,23 @@ export default function KakaoMap() {
             marker.setMap(map);
         };
 
-        console.log('window.kakao:', window.kakao);
+    useEffect(() => {
+        if (document.getElementById('kakao-map-script')) {
+            if (window.kakao && window.kakao.maps) {
+                loadMap();
+            }
+            return;
+        }
+       
 
         if (window.kakao && window.kakao.maps) {
-            console.log('이미 로드됨');
             loadMap();
             return;
         }
 
         const script = document.createElement('script');
         script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=382907188b0cdd8a9b44690aeff0972a&autoload=false`;
-        console.log('스크립트 추가:', script.src);
         script.onload = () => {
-            console.log('스크립트 로드 완료');
             window.kakao.maps.load(loadMap);
         };
         script.onerror = (e) => {

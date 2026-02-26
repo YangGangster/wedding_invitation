@@ -27,6 +27,7 @@ export default function DDay() {
     calc();
     const timer = setInterval(calc, 1000);
     return () => clearInterval(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
