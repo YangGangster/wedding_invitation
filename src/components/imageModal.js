@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import '../style/ImageModal.css'
 
 const ImageModal = ({ clickedImg, handleRotationRight, handleRotationLeft, setClickedImg }) => {
   const [slideDir, setSlideDir] = useState('slide-enter');

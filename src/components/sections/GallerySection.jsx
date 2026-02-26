@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import data from '../../assets/image_data.json';
-import ImageModal from '../ImageModal';
+import ImageModal from '../ImageModal'
 import '../../style/GallerySection.css';
 
 export default function GallerySection() {

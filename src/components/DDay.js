@@ -27,7 +27,7 @@ export default function DDay() {
     calc();
     const timer = setInterval(calc, 1000);
     return () => clearInterval(timer);
-  }, [weddingDate]);
+  }, []);
 
   return (
     <div className="dday-section">
