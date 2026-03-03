@@ -8,18 +8,18 @@ const App = () => {
   const musicRef = useRef(null);
 
   useEffect(() => {
-  const unlock = () => {
-    musicRef.current?.play();
-    document.removeEventListener('touchstart', unlock);
-    document.removeEventListener('click', unlock);
-  };
-  document.addEventListener('touchstart', unlock);
-  document.addEventListener('click', unlock);
-  return () => {
-    document.removeEventListener('touchstart', unlock);
-    document.removeEventListener('click', unlock);
-  };
-}, []);
+    const unlock = () => {
+      musicRef.current?.play();
+      document.removeEventListener('touchstart', unlock);
+      document.removeEventListener('click', unlock);
+    };
+    document.addEventListener('touchstart', unlock);
+    document.addEventListener('click', unlock);
+    return () => {
+      document.removeEventListener('touchstart', unlock);
+      document.removeEventListener('click', unlock);
+    };
+  }, []);
 
   return (
     <>

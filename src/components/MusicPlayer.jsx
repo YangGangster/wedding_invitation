@@ -1,7 +1,9 @@
 import { useState, useRef, forwardRef, useImperativeHandle, useCallback } from 'react';
 import '../style/MusicPlayer.css';
+import WeddingMusic from '../assets/Wedding.mp3';
 
 const MusicPlayer = forwardRef((props, ref) => {
+  
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -36,7 +38,7 @@ const MusicPlayer = forwardRef((props, ref) => {
 
   return (
     <>
-      <audio ref={audioRef} src="/Wedding.mp3" loop />
+      <audio ref={audioRef} src={WeddingMusic} loop />
       <button className={`music-btn ${isPlaying ? 'playing' : ''}`} onClick={toggle}>
         <div className="music-bars">
           {[1, 2, 3, 4].map(i => (

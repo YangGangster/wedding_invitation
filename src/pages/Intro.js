@@ -26,7 +26,10 @@ function Intro({ onFinish, onFirstTouch }) {
   useEffect(() => {
     if (done) {
       const t1 = setTimeout(() => setPhase('fadeout'), 1500);
-      const t2 = setTimeout(() => onFinish(), 2500);
+      const t2 = setTimeout(() => {
+        window.scrollTo(0, 0);  // ← 추가
+        onFinish();
+      }, 2500);
       return () => { clearTimeout(t1); clearTimeout(t2); };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -35,7 +38,6 @@ function Intro({ onFinish, onFirstTouch }) {
   const handleTouch = () => {
     if (!triggered.current) {
       triggered.current = true;
-      // 무음 재생으로 먼저 unlock
       const unlock = new Audio();
       unlock.play().catch(() => {});
       onFirstTouch?.();
