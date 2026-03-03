@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import '../style/ImageModal.css'
 
@@ -17,7 +18,7 @@ const ImageModal = ({ clickedImg, handleRotationRight, handleRotationLeft, setCl
       callback();
       if (imgRef.current) {
         imgRef.current.style.animation = 'none';
-        void imgRef.current.offsetHeight; // reflow
+        void imgRef.current.offsetHeight;
         imgRef.current.style.animation = '';
       }
       setSlideDir(inDir);
@@ -40,9 +41,8 @@ const ImageModal = ({ clickedImg, handleRotationRight, handleRotationLeft, setCl
     setTouchStartX(null);
   };
 
-  return (
+  const modal = (
     <div className="overlay" onClick={() => setClickedImg(null)}>
-
       <img
         ref={imgRef}
         className={`overlay-img ${slideDir}`}
@@ -53,12 +53,10 @@ const ImageModal = ({ clickedImg, handleRotationRight, handleRotationLeft, setCl
         onTouchEnd={handleTouchEnd}
       />
 
-      {/* 닫기 */}
       <span className="overlay-close" onClick={() => setClickedImg(null)}>
         <X size={22} color="#fff" />
       </span>
 
-      {/* 오른쪽 */}
       <div
         className="overlay-arrow overlay-arrow-right"
         onClick={(e) => { e.stopPropagation(); goRight(); }}
@@ -66,16 +64,16 @@ const ImageModal = ({ clickedImg, handleRotationRight, handleRotationLeft, setCl
         <ChevronRight size={24} color="#fff" />
       </div>
 
-      {/* 왼쪽 */}
       <div
         className="overlay-arrow overlay-arrow-left"
         onClick={(e) => { e.stopPropagation(); goLeft(); }}
       >
         <ChevronLeft size={24} color="#fff" />
       </div>
-
     </div>
   );
+
+  return createPortal(modal, document.body);
 };
 
 export default ImageModal;

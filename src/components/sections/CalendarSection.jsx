@@ -23,7 +23,7 @@ export default function CalendarSection() {
         nextLabel={null}
         prev2Label={null}
         next2Label={null}
-        defaultValue={new Date(2027, 8, 7)}
+        defaultValue={new Date(2027, 8, 5)}
         formatDay={(locale, date) => date.getDate()}
         showNeighboringDecade={false}
         showNeighboringMonth={false}
@@ -31,16 +31,16 @@ export default function CalendarSection() {
           return !(
             date.getFullYear() === 2027 &&
             date.getMonth() === 8 &&
-            date.getDate() === 7
+            date.getDate() === 5
           );
         }}
         tileClassName={({ date }) =>
-          date.getFullYear() === 2027 && date.getMonth() === 8 && date.getDate() === 7
+          date.getFullYear() === 2027 && date.getMonth() === 8 && date.getDate() === 5
             ? 'wedding-day'
             : null
         }
         tileContent={({ date }) => {
-          if (date.getFullYear() === 2027 && date.getMonth() === 8 && date.getDate() === 7) {
+          if (date.getFullYear() === 2027 && date.getMonth() === 8 && date.getDate() === 5) {
             return (
               <div className="wedding-tile">
                 <svg viewBox="0 0 32 32" width="36" height="36">
@@ -52,7 +52,7 @@ export default function CalendarSection() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span className="wedding-date">7</span>
+                <span className="wedding-date">5</span>
               </div>
             );
           }

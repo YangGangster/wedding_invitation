@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import '../style/Dday.css';
 
 export default function DDay() {
-  const weddingDate = new Date('2027-09-07T11:00:00');
+  const weddingDate = new Date('2027-09-05T11:00:00');
   const [timeLeft, setTimeLeft] = useState({});
 
   useEffect(() => {

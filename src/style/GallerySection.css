@@ -20,8 +20,19 @@
 
 .gallery-image {
   width: 100%;
-  height: auto;
-  padding: 0 3px 6px 3px;
+  height: 100%;
+  aspect-ratio: 3 / 4;  /* 세로로 긴 직사각형 */
+  object-fit: cover;
+  display: block;
+  padding: 0;
+}
+.gallery-image-list-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.col-4 {
+  padding: 0 !important;
 }
 
 .gallery-more-btn {
