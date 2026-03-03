@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
-import { db } from '../config/firebase';
-import '../style/Guestbook.css'
-import {
-  collection, addDoc, getDocs, deleteDoc, doc,
-  orderBy, query, serverTimestamp
-} from 'firebase/firestore';
+import { createPortal } from 'react-dom'; // ← 추가
+import { getGuestbook, addGuestbook, deleteGuestbook } from '../function/firebase';
+import '../style/Guestbook.css';
 import { X, Trash2 } from 'lucide-react';
 
 export default function Guestbook() {
@@ -15,9 +12,8 @@ export default function Guestbook() {
   const [comments, setComments] = useState([]);
 
   const fetchComments = async () => {
-    const q = query(collection(db, 'guestbook'), orderBy('createdAt', 'desc'));
-    const snapshot = await getDocs(q);
-    setComments(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    const list = await getGuestbook();
+    setComments(list);
   };
 
   useEffect(() => {
@@ -26,12 +22,7 @@ export default function Guestbook() {
 
   const handleSubmit = async () => {
     if (!name.trim() || !message.trim() || !password.trim()) return;
-    await addDoc(collection(db, 'guestbook'), {
-      name,
-      message,
-      password,
-      createdAt: serverTimestamp(),
-    });
+    await addGuestbook({ name, message, password });
     setName('');
     setMessage('');
     setPassword('');
@@ -40,14 +31,42 @@ export default function Guestbook() {
   };
 
   const handleDelete = async (item) => {
-    const input = prompt('비밀번호를 입력하세요');
-    if (input !== item.password) {
-      alert('비밀번호가 틀렸습니다');
-      return;
-    }
-    await deleteDoc(doc(db, 'guestbook', item.id));
-    fetchComments();
+    const success = await deleteGuestbook(item);
+    if (success) fetchComments();
   };
+
+  const modal = (
+    <div className="guestbook-overlay" onClick={() => setIsOpen(false)}>
+      <div className="guestbook-modal" onClick={(e) => e.stopPropagation()}>
+        <div className="guestbook-modal-header">
+          <span className="guestbook-modal-title">축하 메시지</span>
+          <X size={20} style={{ cursor: 'pointer' }} onClick={() => setIsOpen(false)} />
+        </div>
+        <input
+          className="guestbook-input"
+          placeholder="이름"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <textarea
+          className="guestbook-textarea"
+          placeholder="축하 메시지를 남겨주세요 🌸"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <input
+          className="guestbook-input"
+          placeholder="비밀번호 (삭제 시 필요)"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="guestbook-submit-btn" onClick={handleSubmit}>
+          등록
+        </button>
+      </div>
+    </div>
+  );
 
   return (
     <div className="guestbook-section">
@@ -57,7 +76,6 @@ export default function Guestbook() {
         축하 메시지 남기기 ✉️
       </button>
 
-      {/* 목록 */}
       <div className="guestbook-list">
         {comments.length === 0 && (
           <div className="guestbook-empty">첫 번째 축하 메시지를 남겨주세요 🌸</div>
@@ -82,39 +100,8 @@ export default function Guestbook() {
         ))}
       </div>
 
-      {/* 모달 */}
-      {isOpen && (
-        <div className="guestbook-overlay" onClick={() => setIsOpen(false)}>
-          <div className="guestbook-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="guestbook-modal-header">
-              <span className="guestbook-modal-title">축하 메시지</span>
-              <X size={20} style={{ cursor: 'pointer' }} onClick={() => setIsOpen(false)} />
-            </div>
-            <input
-              className="guestbook-input"
-              placeholder="이름"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <textarea
-              className="guestbook-textarea"
-              placeholder="축하 메시지를 남겨주세요 🌸"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <input
-              className="guestbook-input"
-              placeholder="비밀번호 (삭제 시 필요)"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button className="guestbook-submit-btn" onClick={handleSubmit}>
-              등록
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Portal로 body에 직접 렌더링 */}
+      {isOpen && createPortal(modal, document.body)}
     </div>
   );
 }
