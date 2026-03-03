@@ -1,26 +1,37 @@
-import { useState, useRef, forwardRef, useImperativeHandle } from 'react';
+import { useState, useRef, forwardRef, useImperativeHandle, useCallback } from 'react';
 import '../style/MusicPlayer.css';
 
 const MusicPlayer = forwardRef((props, ref) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  useImperativeHandle(ref, () => ({
-    play: () => {
-      const audio = audioRef.current;
-      audio.playbackRate = 0.8;
-      audio.play().then(() => setIsPlaying(true)).catch(() => {});
-    }
-  }));
+  const playAudio = useCallback(() => {
+    const audio = audioRef.current;
+    audio.playbackRate = 0.9;
+    audio.play().then(() => {
+      setIsPlaying(true);
+    }).catch(() => {
+      const tryPlay = () => {
+        audio.playbackRate = 0.9;
+        audio.play().then(() => setIsPlaying(true)).catch(() => {});
+        document.removeEventListener('click', tryPlay);
+        document.removeEventListener('touchstart', tryPlay);
+      };
+      document.addEventListener('click', tryPlay);
+      document.addEventListener('touchstart', tryPlay);
+    });
+  }, []);
+
+  useImperativeHandle(ref, () => ({ play: playAudio }), [playAudio]);
 
   const toggle = () => {
     const audio = audioRef.current;
     if (isPlaying) {
       audio.pause();
+      setIsPlaying(false);
     } else {
-      audio.play();
+      audio.play().then(() => setIsPlaying(true));
     }
-    setIsPlaying(!isPlaying);
   };
 
   return (
