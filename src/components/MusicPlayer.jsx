@@ -1,17 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, forwardRef, useImperativeHandle } from 'react';
+import '../style/MusicPlayer.css';
 
-const MusicPlayer = () => {
+const MusicPlayer = forwardRef((props, ref) => {
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    audio.play().then(() => {
-      setIsPlaying(true);
-    }).catch(() => {
-      setIsPlaying(false);
-    });
-  }, []);
+  useImperativeHandle(ref, () => ({
+    play: () => {
+      const audio = audioRef.current;
+      audio.playbackRate = 0.8;
+      audio.play().then(() => setIsPlaying(true)).catch(() => {});
+    }
+  }));
 
   const toggle = () => {
     const audio = audioRef.current;
@@ -25,12 +25,16 @@ const MusicPlayer = () => {
 
   return (
     <>
-      <audio ref={audioRef} src="/wedding.mp3" loop />
-      <button className="music-btn" onClick={toggle}>
-        {isPlaying ? '🔇' : '🎵'}
+      <audio ref={audioRef} src="/Wedding.mp3" loop />
+      <button className={`music-btn ${isPlaying ? 'playing' : ''}`} onClick={toggle}>
+        <div className="music-bars">
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className={`bar bar-${i}`} />
+          ))}
+        </div>
       </button>
     </>
   );
-};
+});
 
 export default MusicPlayer;

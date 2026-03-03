@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import '../style/Intro.css';
 
-function Intro({ onFinish }) {
+function Intro({ onFinish, onFirstTouch }) {
   const text = "we are getting married!";
   const [displayed, setDisplayed] = useState(0);
   const [phase, setPhase] = useState('writing');
   const [done, setDone] = useState(false);
+  const triggered = useRef(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,8 +32,22 @@ function Intro({ onFinish }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done]);
 
+  const handleTouch = () => {
+    if (!triggered.current) {
+      triggered.current = true;
+      // 무음 재생으로 먼저 unlock
+      const unlock = new Audio();
+      unlock.play().catch(() => {});
+      onFirstTouch?.();
+    }
+  };
+
   return (
-    <div className={`intro-wrapper ${phase === 'fadeout' ? 'fadeout' : ''}`}>
+    <div
+      className={`intro-wrapper ${phase === 'fadeout' ? 'fadeout' : ''}`}
+      onClick={handleTouch}
+      onTouchStart={handleTouch}
+    >
       <div className="intro-text">
         {text.slice(0, displayed)}
         {!done && <span className="intro-cursor">|</span>}

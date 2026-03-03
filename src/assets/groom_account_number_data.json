@@ -1,10 +1,24 @@
 {
-    "data" : [
+    "data": [
         {
-            "title" : "신랑 계좌",
-            "bank_name" : "신한은행",
-            "account_owner" : "김신랑",
-            "account_number" : "111-222-333333"
+            "title": "신랑 계좌",
+            "accounts": [
+                {
+                    "bank_name": "신한은행",
+                    "account_owner": "김민재",
+                    "account_number": "111-222-333333"
+                }
+            ]
+        },
+        {
+            "title": "혼주 계좌",
+            "accounts": [
+                {
+                    "bank_name": "신한은행",
+                    "account_owner": "김기엽",
+                    "account_number": "110-222-333333"
+                }
+            ]
         }
     ]
 }

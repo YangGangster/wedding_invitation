@@ -1,0 +1,72 @@
+.music-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  
+
+  /* 이것들 전부 제거 */
+  background: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+.music-btn:hover {
+  transform: scale(1.12);
+}
+
+/* 바 컨테이너 */
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+/* 각 바 */
+.bar {
+  width: 3px;
+  border-radius: 2px;
+  background: #b48ca0;
+  transition: height 0.3s ease;
+}
+
+/* 정지 시 - 모두 낮게 */
+.bar-1 { height: 4px; }
+.bar-2 { height: 7px; }
+.bar-3 { height: 5px; }
+.bar-4 { height: 9px; }
+
+/* 재생 시 - 춤추는 애니메이션 */
+@keyframes bounce1 {
+  0%, 100% { height: 4px; }
+  50%       { height: 12px; }
+}
+@keyframes bounce2 {
+  0%, 100% { height: 10px; }
+  50%       { height: 4px; }
+}
+@keyframes bounce3 {
+  0%, 100% { height: 7px; }
+  50%       { height: 13px; }
+}
+@keyframes bounce4 {
+  0%, 100% { height: 12px; }
+  50%       { height: 5px; }
+}
+
+.playing .bar-1 { animation: bounce1 0.8s ease-in-out infinite; }
+.playing .bar-2 { animation: bounce2 0.9s ease-in-out infinite; }
+.playing .bar-3 { animation: bounce3 0.7s ease-in-out infinite; }
+.playing .bar-4 { animation: bounce4 1.0s ease-in-out infinite; }

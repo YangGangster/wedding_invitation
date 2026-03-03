@@ -6,7 +6,7 @@ export default function MainSection() {
     <div className='mainsection'>
       <Petals />
       <div className='mainsection-text'>
-        <div className='mainsection-text-1'>KIM MIN JAE & SEO YUN KYUNG</div>
+        <div className='mainsection-text-1'> MIN JAE & YUN KYUNG</div>
         <hr style={{ border: 'none', borderTop: '1px solid #6e6e6eff', margin: '0px 20px' }} />
         <div className='mainsection-text-3'>2027. 09. 07 토요일 오전 11시<br />00000 웨딩홀</div>
       </div>

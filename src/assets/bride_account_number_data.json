@@ -1,17 +1,29 @@
 {
-    "data" : [
+    "data": [
         {
-            "title" : "신부 계좌",
-            "bank_name" : "신한은행",
-            "account_owner" : "이신부",
-            "account_number" : "111-222-333333"
+            "title": "신부 계좌",
+            "accounts":[
+                {
+                    "bank_name": "국민은행",
+                    "account_owner": "서윤경",
+                    "account_number": "111-222-333333"
+                }
+            ]
         },
         {
-            "title" : "혼주 계좌",
-            "bank_name" : "신한은행",
-            "account_owner" : "이장인",
-            "account_number" : "110-222-333333"
+            "title": "혼주 계좌",
+            "accounts": [
+                {
+                    "bank_name": "신한은행",
+                    "account_owner": "서영민",
+                    "account_number": "110-222-333333"
+                },
+                {
+                    "bank_name": "신한은행",
+                    "account_owner": "문경아",
+                    "account_number": "110-222-333333"
+                }
+            ]
         }
-
     ]
 }
